@@ -2,6 +2,8 @@
 
 > **The Dopaminergic Voice:** Acoustic Prosody vs. Ventral Striatal BOLD for Anhedonia Classification
 
+🔗 **GitHub:** [czhou732/ClinicalWhisper](https://github.com/czhou732/ClinicalWhisper) (private)
+
 ## Project Structure
 
 ```
