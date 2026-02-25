@@ -1,0 +1,177 @@
+================================================================================
+              GOOGLE COLAB QUICK START GUIDE
+              Dopaminergic Voice Project — NSG
+================================================================================
+
+Hi team! This guide covers everything you need to run, edit, and save our
+project notebooks on Google Colab. Read this before opening any notebook.
+
+================================================================================
+ 1. OPENING A NOTEBOOK
+================================================================================
+
+Option A — From Google Drive (recommended):
+  1. Go to our shared Drive folder: NSG_Dopaminergic_Voice > Google Colab Materials
+  2. Double-click any .ipynb file
+  3. At the top, click "Open with" → "Google Colaboratory"
+     - If you don't see this option, install Colab:
+       Click "Open with" → "Connect more apps" → search "Colaboratory" → Install
+
+Option B — Direct upload:
+  1. Go to https://colab.research.google.com
+  2. Click File → Upload notebook
+  3. Upload the .ipynb file from your computer
+
+================================================================================
+ 2. OUR NOTEBOOKS
+================================================================================
+
+  01_Stream_A_Acoustic_Pipeline.ipynb    (Lily)
+    - Whisper transcription + OpenSMILE prosody extraction
+    - Dataset: DAIC-WOZ
+    - Output: stream_a_features.csv
+
+  01_Stream_B_fMRI_Pipeline.ipynb        (Dora)
+    - fMRIPrep derivatives + NAcc ROI extraction
+    - Dataset: ds000030
+    - Output: stream_b_features.csv
+
+  02_Fusion_Analysis.ipynb               (Peter)
+    - Cross-modal comparison of Stream A vs B
+    - Requires: both stream CSVs
+    - Output: ablation table, ROC curves, SHAP plots
+
+================================================================================
+ 3. RUNNING CELLS
+================================================================================
+
+Each notebook is divided into numbered cells. Run them IN ORDER, top to bottom.
+
+  Run one cell:       Click the ▶ button on the left of the cell
+                      OR press Shift+Enter
+  Run all cells:      Runtime → Run all
+  Stop execution:     Runtime → Interrupt execution
+  Restart runtime:    Runtime → Restart runtime (clears all variables)
+
+IMPORTANT: Always run Cell 1 (dependencies) first! It installs required
+Python packages. If you see "ModuleNotFoundError", re-run Cell 1.
+
+================================================================================
+ 4. GOOGLE DRIVE INTEGRATION
+================================================================================
+
+Most of our notebooks mount Google Drive in Cell 2. When you run it:
+
+  1. A popup asks "Permit this notebook to access your Google Drive files?"
+  2. Click "Connect to Google Drive"
+  3. Authorize with your Google account (use your personal account that has
+     access to the shared Drive folder)
+
+After mounting, your Drive appears at: /content/drive/MyDrive/
+
+Our project folder: /content/drive/MyDrive/NSG/
+
+If you see "Drive already mounted", that means it worked — no action needed.
+
+================================================================================
+ 5. RUNTIME TYPES (GPU / CPU)
+================================================================================
+
+To change your runtime type:
+  1. Click Runtime → Change runtime type
+  2. Select:
+
+  For Stream A (Whisper):
+    - Hardware accelerator: T4 GPU (free tier)
+    - Whisper runs MUCH faster on GPU
+
+  For Stream B (fMRI) & Fusion:
+    - Hardware accelerator: None (CPU is fine)
+    - Nilearn and scikit-learn don't need GPU
+
+Free Colab limits:
+  - ~12 hours max per session
+  - Sessions disconnect after ~90 min of inactivity
+  - GPU availability varies (try mornings for best access)
+
+================================================================================
+ 6. THE "MAX_SUBJECTS" VARIABLE
+================================================================================
+
+Both Stream A and Stream B notebooks have a line like this:
+
+    MAX_SUBJECTS = 5  # Change to None for full run
+
+What this means:
+  - MAX_SUBJECTS = 5     → Process only 5 subjects (fast, for testing)
+  - MAX_SUBJECTS = None   → Process ALL subjects (slow, for real analysis)
+
+ALWAYS start with MAX_SUBJECTS = 5 to make sure everything works.
+Once you confirm it runs without errors, change to None for the full dataset.
+
+================================================================================
+ 7. SAVING YOUR WORK
+================================================================================
+
+Notebooks auto-save to Drive if you opened from Drive.
+
+To manually save:
+  - Ctrl+S (or Cmd+S on Mac)
+  - File → Save a copy in Drive (creates a personal copy)
+
+Output CSVs and figures are saved to Drive automatically by the notebooks
+(you'll see the path printed in the cell output).
+
+DO NOT save copies of notebooks outside the shared folder — we want one
+canonical version per notebook.
+
+================================================================================
+ 8. COMMON ERRORS & FIXES
+================================================================================
+
+Problem: "ModuleNotFoundError: No module named 'whisper'"
+Fix:     Re-run Cell 1 (!pip install ...)
+
+Problem: "FileNotFoundError: .../stream_a_features.csv"
+Fix:     Run the Stream notebook first to generate the CSV
+
+Problem: "Your session crashed due to exceeding RAM"
+Fix:     Reduce MAX_SUBJECTS, or use Runtime → Change runtime type → High RAM
+         (may require Colab Pro)
+
+Problem: Drive doesn't mount / permission denied
+Fix:     Make sure you're logged into the Google account that has access to
+         our shared Drive folder. Try Runtime → Restart → re-run Cell 2.
+
+Problem: "ResourceExhausted: GPU out of memory"
+Fix:     Runtime → Restart runtime, then re-run. If it persists, reduce
+         batch size or switch to CPU.
+
+================================================================================
+ 9. DATA PRIVACY REMINDER
+================================================================================
+
+⚠ DAIC-WOZ is restricted clinical data.
+
+  NEVER upload:
+    ✗ Raw participant audio files
+    ✗ Raw transcripts
+    ✗ Any file from Data_Real/ folder
+
+  SAFE to upload:
+    ✓ Aggregate CSVs (stream_a_features.csv, etc.)
+    ✓ Figures and plots
+    ✓ Notebook files (.ipynb)
+
+When in doubt, ask Peter before uploading any data file.
+
+================================================================================
+ 10. GETTING HELP
+================================================================================
+
+  - Post in #announcements on Slack with a screenshot of the error
+  - Tag @Peter for notebook/code issues
+  - Check Linear for your current task assignments:
+    https://linear.app/clinical-whisper/team/CLI/all
+
+================================================================================

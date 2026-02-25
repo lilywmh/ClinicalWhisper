@@ -1,0 +1,81 @@
+STREAM A — Acoustic Prosody Pipeline
+Dopaminergic Voice Project | NSG | bioRxiv Target: May 25, 2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STREAM LEAD: Lily Wu
+
+WHAT WE'RE TESTING
+━━━━━━━━━━━━━━━━━━
+
+Can a 5-minute voice recording detect anhedonia as accurately as a $500 brain scan?
+
+Stream A is the acoustic half. You extract features from clinical interview audio
+to build a classifier that predicts anhedonia severity.
+
+YOUR PIPELINE
+━━━━━━━━━━━━━━━━━━
+
+Dataset: DAIC-WOZ (~189 clinical interview recordings + PHQ-8 scores)
+
+Step 1 — TRANSCRIPTION (Whisper large-v3)
+  Raw audio → text + word timestamps
+  Handles: disfluencies, pauses, overlapping speech
+
+Step 2 — SPEAKER DIARIZATION (Pyannote 3.1)
+  Separates interviewer vs. patient audio
+  You analyze only the PATIENT's speech, not the virtual agent (Ellie)
+
+Step 3 — ACOUSTIC FEATURE EXTRACTION (OpenSMILE eGeMAPSv02)
+  88 features: pitch variability (CV_F0), energy flux (CV_Energy),
+  speaking rate, jitter, shimmer, formant frequencies
+  Standard benchmark for clinical speech research (AVEC challenges)
+
+Output: stream_a_features.csv — 189 rows × 88 acoustic features + PHQ-8 score
+
+YOUR DELIVERABLES
+━━━━━━━━━━━━━━━━━━
+
+Week 1 (by Fri Feb 27)
+  □ Set up Python environment (Whisper + Pyannote + OpenSMILE)
+  □ Run Whisper on 1 dummy audio file — confirm setup works
+  □ Submit DAIC-WOZ access request (CRITICAL PATH — this is the single biggest blocker)
+    → https://dcapswoz.ict.usc.edu/
+    Fallback if delayed >2 weeks: AVEC 2017 public subset
+
+Week 2 (by Fri Mar 6)
+  □ Full pipeline on 5 DAIC-WOZ files
+  □ Deliver: 5-row .csv with eGeMAPSv02 features
+
+Week 3 — MVP Gate (by Fri Mar 13)
+  □ Full pipeline on 10 subjects
+  □ Deliver: stream_a_features.csv (10 rows)
+  ◆ GATE: Valid acoustic feature matrix = proceed to full extraction
+
+Weeks 4–5 (Mar 13–26)
+  □ Process all ~189 DAIC-WOZ subjects
+  □ Compute: Colab Pro (~$20) or USC CARC
+
+Week 6 — QC (Mar 27–Apr 1)
+  □ Quality check full matrix — flag failed transcriptions, diarization errors, outliers
+  □ Deliver: clean stream_a_features.csv to Peter for fusion
+
+Week 9 (Apr 16–22)
+  □ Review Stream A methods section in manuscript draft
+  □ Return comments within 48 hours
+
+RESOURCES
+━━━━━━━━━━━━━━━━━━
+
+Starter Colab Notebook: Google Drive → NSG_Dopaminergic_Voice → Google Colab Materials
+GitHub Repo: github.com/czhou732/ClinicalWhisper (private — Peter will invite you)
+Sprint Board: Linear (Peter assigns tickets before each biweekly)
+DAIC-WOZ access: https://dcapswoz.ict.usc.edu/
+
+WORKING NORMS
+━━━━━━━━━━━━━━━━━━
+
+Monday standups (async, by noon):
+  Completed: [what I finished]  |  This week: [what I'm working on]  |  Blocked: [anything / nothing]
+
+Code: GitHub pull requests only — no direct pushes to main. Peter reviews all PRs within 24 hrs.
+Stuck? DM Peter directly.

@@ -1,0 +1,35 @@
+# ============================================
+# NSG Dopaminergic Voice — .gitignore
+# ============================================
+
+# Real clinical data — NEVER commit
+Data_Real/
+
+# Downloaded reference papers (copyrighted)
+papers_dl/
+
+# Large model files
+*.pt
+*.bin
+*.onnx
+
+# Outputs (regenerated from notebooks)
+Results/*.csv
+Results/*.png
+Results/*.txt
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+build/
+
+# macOS
+.DS_Store
+._*
+
+# IDE
+.vscode/
+.idea/

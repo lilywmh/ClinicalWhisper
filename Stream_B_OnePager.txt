@@ -1,0 +1,86 @@
+STREAM B — fMRI Neural Activation Pipeline
+Dopaminergic Voice Project | NSG | bioRxiv Target: May 25, 2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STREAM LEAD: Dora Xiang
+
+WHAT WE'RE TESTING
+━━━━━━━━━━━━━━━━━━
+
+Can a 5-minute voice recording detect anhedonia as accurately as a $500 brain scan?
+
+Stream B is the neural gold standard. You extract brain activation from fMRI scans
+to build a classifier that predicts anhedonia — this is what Stream A has to beat.
+
+YOUR PIPELINE
+━━━━━━━━━━━━━━━━━━
+
+Dataset: ds000030 (~272 subjects, UCLA — fMRI scans during a reward task)
+Source: OpenNeuro — publicly available, no access request needed
+URL: https://openneuro.org/datasets/ds000030
+
+Step 1 — PREPROCESSING (fMRIPrep 23.x)
+  Raw .nii brain scans → motion-corrected, spatially normalized scans
+  Template: MNI152NLin2009cAsym at 2mm resolution
+  ⚡ FIRST: Check if pre-processed derivatives exist on OpenNeuro
+     If yes → skip this step entirely (saves ~800 CPU-hours and 2 weeks)
+
+Step 2 — ROI EXTRACTION (Nilearn)
+  Focus: Nucleus Accumbens (NAcc) + dorsal striatum (reward centers)
+  Mask: Harvard-Oxford subcortical atlas
+  Task contrast: BART — cash-out > inflate (reward processing)
+
+Step 3 — QUALITY CONTROL
+  Exclude if: mean framewise displacement (FD) > 0.5mm
+  Exclude if: >20% frames censored or failed spatial normalization
+  Visual QC: carpet plots, motion distributions, registration montages
+
+Output: stream_b_features.csv — per-subject NAcc/striatum BOLD values + anhedonia measure
+
+YOUR DELIVERABLES
+━━━━━━━━━━━━━━━━━━
+
+Week 1 (by Fri Feb 27) — CRITICAL AUDIT
+  □ Check participants.tsv for anhedonia measures (BDI-II, MASQ)
+  □ Verify _events.tsv has BART behavioral data for all subgroups
+  □ Check if pre-processed fMRIPrep derivatives exist on OpenNeuro
+  □ Report findings to Peter — this determines if Stream B is viable as-designed
+
+Week 2 (by Fri Mar 6)
+  □ Download ds000030 (~272 subjects)
+  □ Set up BIDS-compliant directory structure + verify file integrity
+
+Week 3 — MVP Gate (by Fri Mar 13)
+  □ End-to-end pipeline on 10 subjects
+  □ Deliver: stream_b_features.csv (10 rows with NAcc BOLD values)
+  ◆ GATE: Valid BOLD extraction = proceed to full extraction
+
+Weeks 4–5 (Mar 13–26)
+  □ Run fMRIPrep on all 272 subjects via USC CARC (~800 CPU-hours)
+  □ If pre-processed derivatives exist: jump directly to QC
+
+Week 6 — QC (Mar 27–Apr 1)
+  □ Flag high-motion subjects (FD > 0.5mm), failed normalization
+  □ Deliver: clean stream_b_features.csv to Peter for fusion
+
+Week 9 (Apr 16–22)
+  □ Review Stream B methods section in manuscript draft
+  □ Check: fMRIPrep version, ROI definitions, motion thresholds
+  □ Return comments within 48 hours
+
+RESOURCES
+━━━━━━━━━━━━━━━━━━
+
+ds000030 Dataset: https://openneuro.org/datasets/ds000030
+USC CARC (HPC): https://carc.usc.edu
+GitHub Repo: github.com/czhou732/ClinicalWhisper (private — Peter will invite you)
+Sprint Board: Linear (Peter assigns tickets before each biweekly)
+
+WORKING NORMS
+━━━━━━━━━━━━━━━━━━
+
+Monday standups (async, by noon):
+  Completed: [what I finished]  |  This week: [what I'm working on]  |  Blocked: [anything / nothing]
+
+Code: GitHub pull requests only — no direct pushes to main. Peter reviews all PRs within 24 hrs.
+Stuck? DM Peter directly.

@@ -1,0 +1,56 @@
+================================================================================
+              CALENDAR FILES — HOW TO USE
+              Dopaminergic Voice Project — NSG
+================================================================================
+
+The .ics files in this folder contain your individual project timeline with
+all deadlines, gates, and milestones pre-loaded.
+
+================================================================================
+ YOUR FILE
+================================================================================
+
+  Dora Xiang  →  NSG_Individual_Dora.ics   (Stream B — fMRI)
+  Lily Wu     →  NSG_Individual_Lily.ics   (Stream A — Acoustic)
+
+  Only import YOUR file — don't import the other person's calendar.
+
+================================================================================
+ HOW TO IMPORT
+================================================================================
+
+  Google Calendar (recommended):
+    1. Download your .ics file from this Drive folder
+    2. Go to https://calendar.google.com
+    3. Click the gear icon → Settings
+    4. In the left sidebar, click "Import & export"
+    5. Click "Select file from your computer" → choose your .ics file
+    6. Select which calendar to add events to (or create a new "NSG" calendar)
+    7. Click "Import"
+
+  Apple Calendar (Mac / iPhone):
+    1. Download your .ics file
+    2. Double-click — Apple Calendar opens automatically
+    3. Choose which calendar to add events to
+    4. Click "Import"
+
+  Outlook:
+    1. Download your .ics file
+    2. File → Open & Export → Import/Export
+    3. Select "Import an iCalendar (.ics) file"
+    4. Browse to the file and import
+
+================================================================================
+ WHAT'S INCLUDED
+================================================================================
+
+  Each .ics file contains:
+
+    • Weekly deliverable deadlines
+    • GO/NO-GO gates (Wk1, Wk3, Wk6)
+    • Manuscript review windows
+    • Reminders set 1 day before each deadline
+
+  Events appear as all-day items on your calendar.
+
+================================================================================

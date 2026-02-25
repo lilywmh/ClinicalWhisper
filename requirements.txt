@@ -1,0 +1,29 @@
+# Dopaminergic Voice — Dependencies
+# Install: pip install -r requirements.txt
+
+# --- Audio Processing (Stream A) ---
+openai-whisper>=20231117
+librosa>=0.10.0
+soundfile>=0.12.0
+opensmile>=2.5.0
+pyannote.audio>=3.1.0
+torch>=2.0.0
+
+# --- fMRI Processing (Stream B) ---
+nilearn>=0.10.0
+nibabel>=5.0.0
+openneuro-py>=2024.1.0
+tqdm>=4.65.0
+
+# --- Core Scientific Stack ---
+numpy>=1.24.0
+scipy>=1.11.0
+pandas>=2.0.0
+
+# --- Machine Learning (Fusion) ---
+scikit-learn>=1.3.0
+shap>=0.42.0
+
+# --- Visualization ---
+matplotlib>=3.7.0
+seaborn>=0.12.0
